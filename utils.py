@@ -96,7 +96,7 @@ def unpickle(file):
 def load_cifar100_data(data_path, is_fine=True, is_uint8=False):
     # train
     train_set = unpickle(os.path.join(data_path, 'train'))
-    train_images = train_set['data']
+    train_images = train_set[b'data']
     train_images = np.dstack([
         train_images[:, :1024], train_images[:, 1024:2048],
         train_images[:, 2048:]
@@ -106,13 +106,13 @@ def load_cifar100_data(data_path, is_fine=True, is_uint8=False):
         train_images = train_images / 255.0
         train_images = 2.0 * (train_images - 0.5)
     if is_fine:
-        train_labels = np.array(train_set['fine_labels'])
+        train_labels = np.array(train_set[b'fine_labels'])
     else:
-        train_labels = np.array(train_set['coarse_labels'])
+        train_labels = np.array(train_set[bb'coarse_labels'])
 
     # test
     test_set = unpickle(os.path.join(data_path, 'test'))
-    test_images = test_set['data']
+    test_images = test_set[b'data']
     test_images = np.dstack([
         test_images[:, :1024], test_images[:, 1024:2048], test_images[:, 2048:]
     ])
@@ -121,9 +121,9 @@ def load_cifar100_data(data_path, is_fine=True, is_uint8=False):
         test_images = test_images / 255.0
         test_images = 2.0 * (test_images - 0.5)
     if is_fine:
-        test_labels = np.array(test_set['fine_labels'])
+        test_labels = np.array(test_set[b'fine_labels'])
     else:
-        test_labels = np.array(test_set['coarse_labels'])
+        test_labels = np.array(test_set[b'coarse_labels'])
 
     return dict(train_images=train_images,
                 train_labels=train_labels,
