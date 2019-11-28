@@ -108,7 +108,7 @@ def load_cifar100_data(data_path, is_fine=True, is_uint8=False):
     if is_fine:
         train_labels = np.array(train_set[b'fine_labels'])
     else:
-        train_labels = np.array(train_set[bb'coarse_labels'])
+        train_labels = np.array(train_set[b'coarse_labels'])
 
     # test
     test_set = unpickle(os.path.join(data_path, 'test'))
@@ -175,9 +175,9 @@ def load_cifar10_data(data_path, is_uint8=False):
 def preprocess_py(images, pad_size, target_size):
     '''Preprocess images in python.
     Args:
-      images: 4-D numpy array.
+        images: 4-D numpy array.
     Returns:
-    preprocessed images, 4-D numpy array.
+        preprocessed images, 4-D numpy array.
     '''
     assert images.shape[1] == images.shape[2], 'can only handle square images!'
     image_number = images.shape[0]
